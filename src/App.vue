@@ -3,9 +3,9 @@ import { useHead } from '@vueuse/head'
 import { useNprogress, useAos } from '@/composables'
 
 useHead({
-  title: 'V Page Template',
+  title: 'Image - Colorlives',
   meta: [
-    { name: 'description', content: 'template' },
+    { name: 'description', content: '图像处理，视频流处理' },
   ],
 })
 

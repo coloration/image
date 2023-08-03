@@ -21,6 +21,10 @@ import markdownPrism from 'markdown-it-prism'
 import markdownLinkAttributes from 'markdown-it-link-attributes'
 import markdownAnchor from 'markdown-it-anchor'
 import markdownToc from 'markdown-it-toc-done-right'
+import wasmPack from 'vite-plugin-wasm-pack'
+
+
+
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -30,6 +34,7 @@ export default defineConfig({
     }
   },
   plugins: [
+    wasmPack('./frame-handler'),
     vue({
       include: [/\.vue$/, /\.md/],
     }), 
