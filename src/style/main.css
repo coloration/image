@@ -1,0 +1,114 @@
+body {
+    
+    @apply 
+        font-aspekta antialiased font-[350]
+        text-slate-800 dark:text-slate-200 
+        bg-white dark:bg-slate-900 
+        text-base text-gray-700 dark:text-gray-400;
+    font-family:
+        system-ui, -apple-system, /* 系统默认字体 */ 
+        Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif; /*兜底字体*/
+}
+
+h1 {
+    @apply mb-8 text-gray-900 dark:text-gray-100
+        font-extrabold text-4xl tracking-tight
+        md:text-5xl outline-none text-shadow;
+}
+
+h2 {
+    @apply font-extrabold text-2xl font-red-hat-display mb-6 text-gray-900 dark:text-gray-100
+    outline-none text-shadow;
+}
+
+h3 {
+    @apply font-extrabold text-xl font-red-hat-display mb-4 text-gray-900 dark:text-gray-100
+    outline-none text-shadow;
+}
+
+h4 {
+    @apply font-semibold text-lg mb-4 text-gray-900 dark:text-gray-100
+    outline-none text-shadow;
+}
+
+p {
+    @apply mb-2 tracking-wide;
+}
+
+> p {
+    @apply mb-6;
+}
+
+/* li {
+    @apply mb-2 tracking-normal;
+    & li {
+        @apply mb-1;
+    }
+} */
+
+b, strong {
+    @apply font-medium text-gray-900 dark:text-gray-100;
+}
+
+/* ul, ol {
+    @apply mb-6;
+}
+
+ul ul, ul ol, ol ul, ol ol {
+    @apply pt-1;
+}
+
+ul {
+    @apply list-disc pl-4;
+}
+
+ol {
+    @apply list-zero-decimal pl-7;
+} */
+
+i {
+    @apply italic;
+}
+
+blockquote {
+    @apply
+        italic 
+        px-4 pt-2 pb-3 mb-6 ml-0 font-medium
+        border-l-4 border-violet-500 dark:border-violet-900 
+        bg-gray-100 dark:bg-gray-800
+        ;
+    & > p {
+        @apply m-0;
+    }
+}
+
+hr {
+    @apply mb-4 border-gray-100 dark:border-gray-700;
+}
+
+/* a {
+    @apply underline underline-dark-50 underline-offset-2 dark:underline-light-50;
+} */
+
+table {
+    @apply w-full mb-6;
+
+    & thead tr {
+        @apply ;
+    }
+    & thead th {
+        @apply py-2 border-b-2 border-gray-200 dark:border-gray-700;
+    }
+
+    & tbody tr {
+        @apply ;
+    }
+
+    & tbody td {
+        @apply py-1 border-b-1 border-gray-100 dark:border-gray-700;
+    }
+
+    & tbody tr td:first-of-type {
+        @apply whitespace-nowrap pr-4;
+    }
+}

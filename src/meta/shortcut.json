@@ -1,0 +1,662 @@
+[
+  {
+    "name": "Framework",
+    "children": [
+      {
+        "name": "Vue",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Scope",
+                "value": "framework/01-vue/scope"
+              },
+              {
+                "name": "Setup",
+                "value": "framework/01-vue/setup"
+              },
+              {
+                "name": "Vue 3.2",
+                "value": "framework/01-vue/v3-2-feature"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Taro Vue3 Startup",
+                "value": "framework/01-vue/taro-startup"
+              },
+              {
+                "name": "Tips",
+                "value": "framework/01-vue/tips"
+              },
+              {
+                "name": "Transition",
+                "value": "framework/01-vue/transition"
+              },
+              {
+                "name": "TypeScript in Vue3",
+                "value": "framework/01-vue/ts-in-vue3"
+              },
+              {
+                "name": "Vue2 项目配置",
+                "value": "framework/01-vue/v2-configure"
+              },
+              {
+                "name": "Vue2 配置 Element UI",
+                "value": "framework/01-vue/v2-element-ui"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Node",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "npm",
+                "value": "framework/02-node/npm"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Raspberry",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Rust 交叉编译",
+                "value": "framework/03-raspberry/Rust"
+              },
+              {
+                "name": "烧录系统",
+                "value": "framework/03-raspberry/boot"
+              },
+              {
+                "name": "命令行调试 GPIO",
+                "value": "framework/03-raspberry/debug-gpio"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Blender",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "快捷键",
+                "value": "framework/blender/basic"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Tips",
+                "value": "framework/blender/tips"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Docker",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Command",
+                "value": "framework/docker/command"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Docker Compose",
+                "value": "framework/docker/compose"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Dumpster",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "微信小程序 tips",
+                "value": "framework/dumpster/wechat-miniprogram"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Git",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Commit Message",
+                "value": "framework/git/commit-message"
+              },
+              {
+                "name": "Tips",
+                "value": "framework/git/tips"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Linux",
+        "children": [
+          {
+            "name": "Command",
+            "children": [
+              {
+                "name": "SSH",
+                "value": "framework/linux/ssh"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Nginx",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Tips",
+                "value": "framework/nginx/tips"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "React",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "React Antd tips",
+                "value": "framework/react/antd"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Unity",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "图片字体",
+                "value": "framework/unity/bitfont"
+              },
+              {
+                "name": "与 Android 通信",
+                "value": "framework/unity/connect-android"
+              },
+              {
+                "name": "导入 Spine 动画",
+                "value": "framework/unity/spine"
+              },
+              {
+                "name": "广播消息",
+                "value": "framework/unity/unity-message"
+              },
+              {
+                "name": "Unity Tips",
+                "value": "framework/unity/unity-tips"
+              }
+            ]
+          },
+          {
+            "name": "Extend",
+            "children": [
+              {
+                "name": "[译] ReactiveX 与 Unity3D <一>",
+                "value": "framework/unity/rx-part1"
+              },
+              {
+                "name": "[译] ReactiveX 与 Unity3D <二.1>",
+                "value": "framework/unity/rx-part2-1"
+              },
+              {
+                "name": "[译] ReactiveX 与 Unity3D <二.2>",
+                "value": "framework/unity/rx-part2-2"
+              },
+              {
+                "name": "[译] ReactiveX 与 Unity3D <三>",
+                "value": "framework/unity/rx-part3"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Language",
+    "children": [
+      {
+        "name": "JavaScript",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Awesome",
+                "value": "language/01-javascript/awesome"
+              },
+              {
+                "name": "DOM 操作",
+                "value": "language/01-javascript/dom"
+              },
+              {
+                "name": "使用 Dreamjs 生成 JSON 数据",
+                "value": "language/01-javascript/dreamjs"
+              },
+              {
+                "name": "Regexp Tips",
+                "value": "language/01-javascript/regexp-tips"
+              }
+            ]
+          },
+          {
+            "name": "Snytax",
+            "children": [
+              {
+                "name": "正则表达式",
+                "value": "language/01-javascript/regexp"
+              },
+              {
+                "name": "《你不知道的JavaScript》01 作用域与闭包",
+                "value": "language/01-javascript/you-dont-know-javascript-01"
+              },
+              {
+                "name": "《你不知道的JavaScript》02 this",
+                "value": "language/01-javascript/you-dont-know-javascript-02"
+              },
+              {
+                "name": "《你不知道的JavaScript》03 对象与原型",
+                "value": "language/01-javascript/you-dont-know-javascript-03"
+              },
+              {
+                "name": "《你不知道的JavaScript》04 类型",
+                "value": "language/01-javascript/you-dont-know-javascript-04"
+              },
+              {
+                "name": "《你不知道的JavaScript》05 语法",
+                "value": "language/01-javascript/you-dont-know-javascript-05"
+              },
+              {
+                "name": "《你不知道的JavaScript》06 异步",
+                "value": "language/01-javascript/you-dont-know-javascript-06"
+              },
+              {
+                "name": "《你不知道的JavaScript》07 性能",
+                "value": "language/01-javascript/you-dont-know-javascript-07"
+              },
+              {
+                "name": "《你不知道的JavaScript》08 现在与未来",
+                "value": "language/01-javascript/you-dont-know-javascript-08"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "TypeScript 类型挑战 (一) Easy",
+                "value": "language/02-typescript/type-challenges-01-easy"
+              },
+              {
+                "name": "TypeScript 类型挑战 (二) Medium",
+                "value": "language/02-typescript/type-challenges-02-medium"
+              },
+              {
+                "name": "TypeScript 类型挑战 (三) Hard",
+                "value": "language/02-typescript/type-challenges-03-hard"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Rust",
+        "children": [
+          {
+            "name": "Links",
+            "children": [
+              {
+                "name": "Rust",
+                "value": "language/03-rust/README"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Cargo (Rust 包管理)",
+                "value": "language/03-rust/cargo"
+              }
+            ]
+          },
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Collection",
+                "value": "language/03-rust/collection"
+              },
+              {
+                "name": "并发编程 concurrent",
+                "value": "language/03-rust/concurrent"
+              },
+              {
+                "name": "数据类型 data type",
+                "value": "language/03-rust/datatype"
+              },
+              {
+                "name": "枚举 enum",
+                "value": "language/03-rust/enum"
+              },
+              {
+                "name": "错误处理",
+                "value": "language/03-rust/err-handle"
+              },
+              {
+                "name": "泛型 Generic, 生命周期 Lifetime",
+                "value": "language/03-rust/generic-lifetime"
+              },
+              {
+                "name": "迭代器 iterator",
+                "value": "language/03-rust/iterator"
+              },
+              {
+                "name": "宏 Macro",
+                "value": "language/03-rust/macro"
+              },
+              {
+                "name": "代码组织与模块",
+                "value": "language/03-rust/module"
+              },
+              {
+                "name": "OOP",
+                "value": "language/03-rust/oop"
+              },
+              {
+                "name": "所有权 ownership",
+                "value": "language/03-rust/ownership"
+              },
+              {
+                "name": "智能指针 smart pointer",
+                "value": "language/03-rust/pointer"
+              },
+              {
+                "name": "结构体 struct",
+                "value": "language/03-rust/struct"
+              },
+              {
+                "name": "Syntax",
+                "value": "language/03-rust/syntax"
+              },
+              {
+                "name": "测试",
+                "value": "language/03-rust/test"
+              },
+              {
+                "name": "注解 Trait",
+                "value": "language/03-rust/trait"
+              },
+              {
+                "name": "不安全的 Rust",
+                "value": "language/03-rust/unsafe"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CSS",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Background",
+                "value": "language/04-css/css-background"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Reset",
+                "value": "language/04-css/css-helper-reset"
+              },
+              {
+                "name": "Tips",
+                "value": "language/04-css/css-helper-tip"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Python",
+        "children": [
+          {
+            "name": "Snytax",
+            "children": [
+              {
+                "name": "API Module",
+                "value": "language/05-python/py-api-module"
+              },
+              {
+                "name": "Data Model",
+                "value": "language/05-python/py-data-model"
+              },
+              {
+                "name": "OO",
+                "value": "language/05-python/py-oo"
+              }
+            ]
+          },
+          {
+            "name": "Library",
+            "children": [
+              {
+                "name": "Matplotlib",
+                "value": "language/05-python/py-lib-matplotlib"
+              },
+              {
+                "name": "NumPy",
+                "value": "language/05-python/py-lib-numpy"
+              },
+              {
+                "name": "Pillow",
+                "value": "language/05-python/py-lib-pillow"
+              },
+              {
+                "name": "Flask",
+                "value": "language/05-python/py-project-flask"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Flask",
+                "value": "language/05-python/py-project-pip"
+              }
+            ]
+          },
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Syntax",
+                "value": "language/05-python/py-syntax"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CSharp",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "LINQ",
+                "value": "language/06-csharp/csharp-linq"
+              },
+              {
+                "name": "Nutshell",
+                "value": "language/06-csharp/csharp-nutshell"
+              }
+            ]
+          },
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "Tips",
+                "value": "language/06-csharp/csharp-tips"
+              },
+              {
+                "name": "LitJson",
+                "value": "language/06-csharp/litjson"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "CPP",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "Syntax",
+                "value": "language/cpp/index"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "SQL",
+        "children": [
+          {
+            "name": "Syntax",
+            "children": [
+              {
+                "name": "查询",
+                "value": "language/sql/01-read"
+              },
+              {
+                "name": "排序",
+                "value": "language/sql/02-sort"
+              },
+              {
+                "name": "插入、更新和删除",
+                "value": "language/sql/04-CUD"
+              },
+              {
+                "name": "数值处理",
+                "value": "language/sql/07-value"
+              }
+            ]
+          },
+          {
+            "name": "Library",
+            "children": [
+              {
+                "name": "GraphQL",
+                "value": "language/sql/graphql"
+              },
+              {
+                "name": "SQLite",
+                "value": "language/sql/sqlite"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Knowledge",
+    "children": [
+      {
+        "name": "Design Pattern",
+        "children": [
+          {
+            "name": "Practice",
+            "children": [
+              {
+                "name": "设计原则",
+                "value": "knowledge/design-pattern/01-index"
+              },
+              {
+                "name": "创建型",
+                "value": "knowledge/design-pattern/02-creational"
+              },
+              {
+                "name": "结构型",
+                "value": "knowledge/design-pattern/03-structural"
+              },
+              {
+                "name": "行为型",
+                "value": "knowledge/design-pattern/04-behavioral"
+              },
+              {
+                "name": "其他模式",
+                "value": "knowledge/design-pattern/05-other"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
