@@ -23,7 +23,8 @@ import markdownAnchor from 'markdown-it-anchor'
 import markdownToc from 'markdown-it-toc-done-right'
 import wasmPack from 'vite-plugin-wasm-pack'
 
-
+import wasm from 'vite-plugin-wasm'
+import topLevelAwait from 'vite-plugin-top-level-await'
 
 
 // https://vitejs.dev/config/
@@ -34,7 +35,11 @@ export default defineConfig({
     }
   },
   plugins: [
-    wasmPack('./frame-handler'),
+    wasm(),
+    topLevelAwait(),
+    wasmPack([
+      './frame-handler',
+    ]),
     vue({
       include: [/\.vue$/, /\.md/],
     }), 
