@@ -1,10 +1,5 @@
 body {
-    
-    @apply 
-        font-aspekta antialiased font-[350]
-        text-slate-800 dark:text-slate-200 
-        bg-white dark:bg-slate-900 
-        text-base text-gray-700 dark:text-gray-400;
+ 
     font-family:
         system-ui, -apple-system, /* 系统默认字体 */ 
         Segoe UI, Rototo, Emoji, Helvetica, Arial, sans-serif; /*兜底字体*/

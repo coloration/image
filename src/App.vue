@@ -18,5 +18,8 @@ useAos()
   <router-view />
 </template>
 
-<style scoped>
+<style>
+html, body {
+  background-color: #5996CE !important;
+}
 </style>
