@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { readAsBase64, featureGroups, Pipe, FeatureType, featureNameGroup } from '../core'
+import init, { grayscale } from 'frame-handler'
 
 
 const imageSources = ref<string[]>([])

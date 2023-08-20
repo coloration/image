@@ -27,6 +27,7 @@ async function handleFileChange(e: any) {
     })
   }, Promise.resolve([] as Uint8ClampedArray[]))
 
+  console.log('ffff')
 
   console.log(fileBuffers)
 
@@ -72,7 +73,6 @@ async function handleFileChange(e: any) {
         <img :src="img" alt="">
       </div>
     </div>
-
 
     <canvas ref="canvasRef" class="h-100px w-100px"></canvas>
   </label>
