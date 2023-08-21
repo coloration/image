@@ -6,24 +6,20 @@ export function readAsBase64(f: File) {
       resolve(reader.result as string)
     }
 
-    reader.onerror = (e) => {
-      reject(e)
-    }
+    reader.onerror = reject
     reader.readAsDataURL(f)
   })
 }
 
 export function readAsBuffer(f: File) {
-  return new Promise((resolve, reject) => {
+  return new Promise<ArrayBuffer>((resolve, reject) => {
     const reader = new FileReader()
 
     reader.onload = () => {
       resolve(reader.result as ArrayBuffer)
     }
 
-    reader.onerror = (e) => {
-      reject(e)
-    }
+    reader.onerror = reject
     reader.readAsArrayBuffer(f)
   })
 }

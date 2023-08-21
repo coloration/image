@@ -1,3 +1,8 @@
+use image::DynamicImage;
+
+struct FileSuffix(String);
+
+
 pub enum FeatureFormat {
   Png,
   Jpg,

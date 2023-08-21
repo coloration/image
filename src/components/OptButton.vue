@@ -4,13 +4,25 @@ const props = withDefaults(
     disabled?: boolean
   }>(),
   {
-
+    disabled: false
   }
 )
+
+const emits = defineEmits<{
+  (e: 'click'): void
+}>()
+
+function handleClick() {
+  if (props.disabled) return
+  emits('click')
+}
 </script>
 
 <template>
-  <div class="opt-button" :class="{ disabled }">
+  <div
+    class="opt-button"
+    :class="{ disabled }"
+    @click="handleClick">
     <!-- -->
     <slot />
   </div>

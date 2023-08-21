@@ -2,7 +2,7 @@
 const props = withDefaults(
   defineProps<{
     source?: string
-    closable: boolean
+    closable?: boolean
   }>(),
   {
     closable: false

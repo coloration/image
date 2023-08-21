@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
-import { readAsBase64, featureGroups, Pipe, FeatureType, featureNameGroup } from '../core'
-import init, { grayscale } from 'frame-handler'
+import { computed, ref } from 'vue'
+import { readAsBase64, featureGroups, Pipe, FeatureType, featureNameGroup, readAsBuffer } from '../core'
+import init, { grayscale, greet } from 'frame-handler'
 
 
 const imageSources = ref<string[]>([])
@@ -10,19 +10,22 @@ const needRerender = ref<boolean>(false)
 const pipe = ref<Pipe>(new Pipe())
 
 
+const runValidStatus = computed(() => {
+
+})
+
 
 async function handleFileChange(e: any) {
   console.log('files', e.target.files)
   const files: File[] = Array.from(e.target.files)
   
-  imageSources.value.push(...await Promise.all(files.map(readAsBase64)))
-
+  await pipe.value.addSource(files)
   needRerender.value = true
 
 }
 
 function deleteSource(index: number) {
-  imageSources.value.splice(index, 1)
+  pipe.value.delSource(index)
   needRerender.value = true
 }
 
@@ -32,11 +35,24 @@ function addFeature(type: FeatureType) {
 }
 
 function removeFeature(index: number) {
-  console.log('????', index)
   pipe.value.delFeature(index)
   needRerender.value = true
 }
 
+async function handleRun() {
+  const bufs = await Promise.all(pipe.value.sources.map(readAsBuffer))
+  await init()
+  greet('Davidd');
+  const responses = bufs.map((buf) => {
+    console.log(buf.byteLength)
+    console.log(new Uint8Array(buf).byteOffset)
+    return grayscale(new Uint8Array(buf))
+  })
+  console.log(bufs, responses)
+
+  imageResults.value.push(...responses)
+
+}
 </script>
 
 <template>
@@ -67,7 +83,7 @@ function removeFeature(index: number) {
             <ImageBox
               closable
               @close="deleteSource(i)"
-              v-for="(item, i) in imageSources"
+              v-for="(item, i) in pipe.displaySources"
               :key="i"
               :source="item" />
           </div>
@@ -96,8 +112,13 @@ function removeFeature(index: number) {
       <Board class="pipe-board">
         <template #title>Pipe</template>
 
-        <template #footer>
-          <OptButton disabled>Run</OptButton>
+      <template #footer>
+          <OptButton
+            @click="handleRun"
+            :disabled="!pipe.isReady">
+            Run
+            {{ pipe.isReady }}
+          </OptButton>
         </template>
 
         <template #default>

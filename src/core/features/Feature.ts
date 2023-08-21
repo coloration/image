@@ -1,10 +1,16 @@
 import { FeatureGroup, FeatureType } from './base'
 
 export class Feature {
+
+  uni: boolean = false
   type: FeatureType = FeatureType.None
   group: FeatureGroup = FeatureGroup.None
-  
+  source?: Uint8ClampedArray
   params: any = {}
+
+  check() {
+    return false
+  }
 
   toArrayBuffer() {
 
@@ -12,10 +18,10 @@ export class Feature {
 
   toBase64() {
 
+    return ''
   }
 
-  async render() {
-
-    return new Uint8ClampedArray()
+  async render(arr: Uint8ClampedArray) {
+    this.source = arr
   }
 }
