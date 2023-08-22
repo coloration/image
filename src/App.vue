@@ -5,7 +5,7 @@ import { useNprogress, useAos } from '@/composables'
 useHead({
   title: 'Image - Colorlives',
   meta: [
-    { name: 'description', content: '图像处理，视频流处理' },
+    { name: 'description', content: '图像处理，视频流处理，图像格式转换，图像二值化，图像灰度化' },
   ],
 })
 
@@ -18,5 +18,8 @@ useAos()
   <router-view />
 </template>
 
-<style scoped>
+<style>
+html, body {
+  background-color: #5996CE !important;
+}
 </style>
