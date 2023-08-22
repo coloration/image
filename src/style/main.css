@@ -30,9 +30,7 @@ p {
     @apply mb-2 tracking-wide;
 }
 
-> p {
-    @apply mb-6;
-}
+
 
 /* li {
     @apply mb-2 tracking-normal;
