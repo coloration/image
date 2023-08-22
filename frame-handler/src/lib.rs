@@ -9,9 +9,6 @@ use wasm_bindgen::prelude::*;
 extern "C" {
     #[wasm_bindgen(js_namespace = console)]
     fn log(message: String);
-
-    #[wasm_bindgen(js_namespace = console, js_name = info)]
-    fn info_2(message: String);
 }
 
 fn buffer_to_image(buf: &[u8], format: ImageFormat) -> DynamicImage {
@@ -51,7 +48,6 @@ fn image_to_base64(img: DynamicImage, format: ImageFormat) -> String {
 #[wasm_bindgen]
 pub fn greet(name: &str) {
     log(format!("Hello, {}!", name));
-    info_2(format!("Hello, {}!", name));
 }
 
 // example
@@ -90,22 +86,63 @@ pub fn grayscale(_array: &[u8]) -> String {
 }
 
 
-enum FeatType {
-    Grayscale(Grayscale),
-    Format(Format)
+
+trait Feat {
+    
+    fn handle(&self, img: DynamicImage, param: &JsValue) -> DynamicImage;
+    
 }
 
 
-struct Grayscale {}
-struct Format {}
-trait Feat {}
+struct Grayscale {
+}
 
-impl Feat for Grayscale {}
-impl Feat for Format {}
+impl Feat for Grayscale {
+    fn handle (&self, img: DynamicImage, _param: &JsValue) -> DynamicImage {
+        img.grayscale()
+    }
+}
+
+
+struct Invert {
+}
+
+impl Feat for Invert {
+    fn handle (&self, mut img: DynamicImage, _param: &JsValue) -> DynamicImage {
+        img.invert();
+        img
+    } 
+}
+
+struct Format {
+}
+
+impl Feat for Format {
+    fn handle (&self, img: DynamicImage, _param: &JsValue) -> DynamicImage {
+        img
+    }
+}
+
+
+struct FeatStrategy {}
+
+impl FeatStrategy {
+    fn generate(t: &str) -> Box<dyn Feat> {
+        match t {
+            "grayscale" => Box::new(Grayscale {}),
+            "format" => Box::new(Format {}),
+            "invert" => Box::new(Invert {}),
+            _ => {
+                panic!("feature type can not matched")
+            }
+        }
+    }
+}
 
 #[wasm_bindgen]
 pub struct Pipe {
     feats: Vec<Box<dyn Feat>>,
+    params: Vec<JsValue>
 }
 
 #[wasm_bindgen]
@@ -113,18 +150,53 @@ impl Pipe {
     #[wasm_bindgen(constructor)]
     pub fn new() -> Pipe {
         Pipe {
-            feats: vec![] 
+            feats: vec![],
+            params: vec![],
         }
     }
 
-    pub fn add_feature(&mut self, t: &str, value: &str) {
-        let feat = Grayscale {};
-        self.feats.push(Box::new(feat));
+    pub fn add_feature(&mut self, t: &str, value: JsValue) {
+        let feat = FeatStrategy::generate(t);
+        self.feats.push(feat);
+        self.params.push(value);
+    }
+
+    pub fn del_feature(&mut self, index: usize) {
+        if index >= self.feats.len() {
+            return
+        }
+
+        self.feats.remove(index);
+        self.params.remove(index);
+    }
+
+
+    pub fn set_feature(&mut self, index: usize, param: JsValue) {
+        if index >= self.feats.len() {
+            return
+        }
+        self.params[index] = param
     }
 
     pub fn feature_len(&self) -> usize {
         self.feats.len()
     }
 
-    pub fn render(arr: &[u8]) {}
+    pub fn render(&self, arr: &[u8], from_suffix: &str, to_suffix:&str) -> String {
+        let mut dyn_image = buffer_to_image(
+            arr, 
+            ImageFormat::from_extension(from_suffix).expect("no matched extensions")
+        );
+
+        for (i, handler) in self.feats.iter().enumerate() {
+            let param = self.params.get(i).expect("params is error");
+            dyn_image = handler.handle(dyn_image, param);
+        };
+
+
+        image_to_base64(
+            dyn_image,
+            ImageFormat::from_extension(to_suffix).expect("no matched extensions")
+        )
+    }
 }

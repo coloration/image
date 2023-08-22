@@ -1,22 +1,14 @@
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
-import { readAsBase64, featureGroups, Pipe, FeatureType, featureNameGroup, readAsBuffer } from '../core'
-import init, { grayscale, greet } from 'frame-handler'
+import { ref } from 'vue'
+import { featureGroups, Pipe, FeatureType, featureNameGroup, readAsBuffer } from '../core'
+import { download } from '@coloration/kit'
 
 
-const imageSources = ref<string[]>([])
 const imageResults = ref<string[]>([])
 const needRerender = ref<boolean>(false)
 const pipe = ref<Pipe>(new Pipe())
 
-
-const runValidStatus = computed(() => {
-
-})
-
-
 async function handleFileChange(e: any) {
-  console.log('files', e.target.files)
   const files: File[] = Array.from(e.target.files)
   
   await pipe.value.addSource(files)
@@ -40,18 +32,30 @@ function removeFeature(index: number) {
 }
 
 async function handleRun() {
-  const bufs = await Promise.all(pipe.value.sources.map(readAsBuffer))
-  await init()
-  greet('Davidd');
-  const responses = bufs.map((buf) => {
-    console.log(buf.byteLength)
-    console.log(new Uint8Array(buf).byteOffset)
-    return grayscale(new Uint8Array(buf))
+  const responses = await pipe.value.handle()
+  imageResults.value = responses
+}
+
+function handleDownload () {
+  imageResults.value.map((res, i) => {
+    
+    // TODO replace when kit package fix
+    const arr = res.split(',') as any
+    const mime = arr[0].match(/:(.*?);/)[1]
+    console.log(mime)
+    const bstr = atob(arr[1])
+    let n = bstr.length
+    const u8arr = new Uint8Array(n)
+    
+    while(n--){
+      u8arr[n] = bstr.charCodeAt(n)
+    }
+  
+  const blob = new Blob([u8arr], { type: mime })
+  const objUrl = URL.createObjectURL(blob)
+    // const fileName = pipe.value.sources[i].name
+    download(pipe.value.sources[i].name, objUrl)
   })
-  console.log(bufs, responses)
-
-  imageResults.value.push(...responses)
-
 }
 </script>
 
@@ -94,7 +98,10 @@ async function handleRun() {
 
 
         <template #footer>
-          <OptButton disabled>Download</OptButton>
+          <OptButton
+            @click="handleDownload"
+            :disabled="imageResults.length === 0"
+          >Download</OptButton>
         </template>
 
         <template #default>
@@ -117,7 +124,6 @@ async function handleRun() {
             @click="handleRun"
             :disabled="!pipe.isReady">
             Run
-            {{ pipe.isReady }}
           </OptButton>
         </template>
 
@@ -136,9 +142,9 @@ async function handleRun() {
       </Board>
       <Board class="flex-1">
         <template #title>Features</template>
-        <template #footer>
+        <!-- <template #footer>
           <OptButton disabled>Setting</OptButton>
-        </template>
+        </template> -->
         <template #default>
           <div
             v-for="item in featureGroups"

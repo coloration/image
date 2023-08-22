@@ -1,5 +1,6 @@
 import { Feature } from './Feature'
 import { Grayscale } from './Grayscale'
+import { Invert } from './Invert'
 import { FeatureType } from './base'
 
 export class FeatureStrategy {
@@ -13,6 +14,10 @@ export class FeatureStrategy {
 
     if (type === FeatureType.Grayscale) {
       return new Grayscale()
+    }
+
+    if (type === FeatureType.Invert) {
+      return new Invert()
     }
 
     return new Feature()

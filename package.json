@@ -1,5 +1,5 @@
 {
-  "name": "v-page-template-2023",
+  "name": "image",
   "private": true,
   "scripts": {
     "wasm": "wasm-pack build ./frame-handler --target web",

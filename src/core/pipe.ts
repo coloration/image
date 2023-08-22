@@ -1,7 +1,7 @@
 import { FeatureStrategy, type Feature, FeatureType } from './features'
 import { toArray } from '@coloration/kit'
 import { readAsBase64, readAsBuffer } from './utils'
-import init, {} from 'frame-handler'
+import init, { Pipe as WasmPipe } from 'frame-handler'
 export class Pipe {
 
   features: Feature[] = []
@@ -11,8 +11,20 @@ export class Pipe {
   step: number = 0
   index: number = 0
   isReady: boolean = false
+  wasmPipe: WasmPipe | null = null
+
+  constructor() {
+    (async () => {
+      await init()
+      console.log('init wasm pipe')
+      this.wasmPipe = new WasmPipe()
+    })()
+
+  }
+
 
   check() {
+    console.log('wasm feature length', this.wasmPipe?.feature_len())
     if (
       this.features.length === 0
       || this.sources.length === 0
@@ -41,27 +53,23 @@ export class Pipe {
   addFeature(featType: FeatureType) {
     const feat = FeatureStrategy.create(featType, this.features)
     if (!feat) return
-    console.log('????????')
+    this.wasmPipe?.add_feature(featType, { a: 12, b: 5 })
     this.features.push(feat)
     this.check()
   }
 
   delFeature(index: number) {
     this.features.splice(index, 1)
+    this.wasmPipe?.del_feature(index)
     this.check()
   }
 
   async handle() {
-    const bufSources = await Promise.all(this.sources.map(readAsBuffer))
-
-    await init()
-    // this.displayResults = bufSources.map(async (buf) => {
-    //   return await this.features.reduce(async(last, feat) => {
-    //     const prev = await last
-    //     this.step += 1
-    //     return feat.render(prev)
-    //   }, Promise.resolve(new Uint8ClampedArray(buf)))
-    // })
+    return (await Promise.all(this.sources.map(readAsBuffer)))
+      .map(arrBuf => new Uint8Array(arrBuf))
+      .map((buf) => {
+        return this.wasmPipe!.render(buf, 'png', 'png')
+      })
   }
 
   toJSONConfigure() {

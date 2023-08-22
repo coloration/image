@@ -1,4 +1,8 @@
 <script lang="ts" setup>
+import { getCurrentInstance } from 'vue'
+
+const instance = getCurrentInstance()
+
 
 </script>
 
@@ -19,7 +23,7 @@
       <slot></slot>
     </div>
 
-    <div class="board-footer">
+    <div class="board-footer" v-if="instance?.slots?.footer">
       <slot name="footer"></slot>
     </div>
 
