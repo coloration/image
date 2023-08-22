@@ -30,7 +30,7 @@ function handleClose() {
 
 <style lang="postcss">
 .image-box {
-  @apply w-40 h-40 flex justify-center items-center bg-gray-300 group relative;
+  @apply w-40 h-40 flex justify-center items-center bg-gray-300 group relative overflow-hidden;
 
   & img {
     @apply object-fill select-none;

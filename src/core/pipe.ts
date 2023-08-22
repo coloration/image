@@ -46,6 +46,8 @@ export class Pipe {
 
   delSource(index: number)  {
     this.sources.splice(index, 1)
+    this.displaySources.splice(index, 1)
+    console.log(index)
     this.check()
   }
  
@@ -67,8 +69,10 @@ export class Pipe {
   async handle() {
     return (await Promise.all(this.sources.map(readAsBuffer)))
       .map(arrBuf => new Uint8Array(arrBuf))
-      .map((buf) => {
-        return this.wasmPipe!.render(buf, 'png', 'png')
+      .map((buf, i) => {
+        const type = this.sources[i].type.split('/')[1] || 'png'
+        console.log(type)
+        return this.wasmPipe!.render(buf, type, type)
       })
   }
 

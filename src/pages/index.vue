@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { featureGroups, Pipe, FeatureType, featureNameGroup, readAsBuffer } from '../core'
+import { featureGroups, Pipe, FeatureType, featureNameGroup } from '../core'
 import { download } from '@coloration/kit'
-
 
 const imageResults = ref<string[]>([])
 const needRerender = ref<boolean>(false)
@@ -10,8 +9,14 @@ const pipe = ref<Pipe>(new Pipe())
 
 async function handleFileChange(e: any) {
   const files: File[] = Array.from(e.target.files)
+
+  const validFiles = files.filter(f => {
+    console.log(f)
+    
+    return f.type.match(/(png|jpeg|jpg|gif)$/)
+  })
   
-  await pipe.value.addSource(files)
+  await pipe.value.addSource(validFiles)
   needRerender.value = true
 
 }
@@ -60,8 +65,12 @@ function handleDownload () {
 </script>
 
 <template>
+  <div class="pt-2 text-sm text-white">
+      目前支持的格式为 .png .jpg .jpeg .gif。gif 目前只能导出第一帧。
+  </div>
   <div class="main-view">
     <!-- -->
+    
     <div class="flex flex-col gap-2 flex-1">
       <Board>
         <template #title>Input</template>
