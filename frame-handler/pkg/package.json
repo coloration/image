@@ -1,0 +1,17 @@
+{
+  "name": "frame-handler",
+  "collaborators": [
+    "Binyu <binyu1231@gmail.com>"
+  ],
+  "version": "0.1.0",
+  "files": [
+    "frame_handler_bg.wasm",
+    "frame_handler.js",
+    "frame_handler.d.ts"
+  ],
+  "module": "frame_handler.js",
+  "types": "frame_handler.d.ts",
+  "sideEffects": [
+    "./snippets/*"
+  ]
+}
