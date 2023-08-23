@@ -3,6 +3,7 @@ import { FeatureType, FeatureGroup } from './base'
 export const featureNameGroup: { [key: string]: string } = {
   [FeatureType.Grayscale]: 'Grayscale',
   [FeatureType.Invert]: 'Invert',
+  [FeatureType.Binary]: 'Binary',
 }
 
 export const featureGroups: { 
@@ -14,6 +15,7 @@ export const featureGroups: {
     features: [
       { name: featureNameGroup[FeatureType.Grayscale], value: FeatureType.Grayscale },
       { name: featureNameGroup[FeatureType.Invert], value: FeatureType.Invert },
+      { name: featureNameGroup[FeatureType.Binary], value: FeatureType.Binary },
     ]
   }
 ]

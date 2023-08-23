@@ -1,15 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
 /**
-* @param {string} name
-*/
-export function greet(name: string): void;
-/**
-* @param {Uint8Array} _array
-* @returns {string}
-*/
-export function grayscale(_array: Uint8Array): string;
-/**
 */
 export class Pipe {
   free(): void;
@@ -47,8 +38,6 @@ export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembl
 
 export interface InitOutput {
   readonly memory: WebAssembly.Memory;
-  readonly greet: (a: number, b: number) => void;
-  readonly grayscale: (a: number, b: number, c: number) => void;
   readonly __wbg_pipe_free: (a: number) => void;
   readonly pipe_new: () => number;
   readonly pipe_add_feature: (a: number, b: number, c: number, d: number) => void;
@@ -56,10 +45,10 @@ export interface InitOutput {
   readonly pipe_set_feature: (a: number, b: number, c: number) => void;
   readonly pipe_feature_len: (a: number) => number;
   readonly pipe_render: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
-  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
+  readonly __wbindgen_free: (a: number, b: number, c: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

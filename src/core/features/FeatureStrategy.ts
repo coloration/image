@@ -1,3 +1,4 @@
+import { Binary } from './Binary'
 import { Feature } from './Feature'
 import { Grayscale } from './Grayscale'
 import { Invert } from './Invert'
@@ -18,6 +19,10 @@ export class FeatureStrategy {
 
     if (type === FeatureType.Invert) {
       return new Invert()
+    }
+
+    if (type === FeatureType.Binary) {
+      return new Binary()
     }
 
     return new Feature()

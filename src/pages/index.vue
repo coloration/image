@@ -13,7 +13,7 @@ async function handleFileChange(e: any) {
   const validFiles = files.filter(f => {
     console.log(f)
     
-    return f.type.match(/(png|jpeg|jpg|gif)$/)
+    return f.name.match(/(png|jpeg|jpg|gif|ico)$/)
   })
   
   await pipe.value.addSource(validFiles)
@@ -47,7 +47,7 @@ function handleDownload () {
     // TODO replace when kit package fix
     const arr = res.split(',') as any
     const mime = arr[0].match(/:(.*?);/)[1]
-    console.log(mime)
+
     const bstr = atob(arr[1])
     let n = bstr.length
     const u8arr = new Uint8Array(n)

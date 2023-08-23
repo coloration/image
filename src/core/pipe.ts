@@ -70,7 +70,7 @@ export class Pipe {
     return (await Promise.all(this.sources.map(readAsBuffer)))
       .map(arrBuf => new Uint8Array(arrBuf))
       .map((buf, i) => {
-        const type = this.sources[i].type.split('/')[1] || 'png'
+        const type = this.sources[i].name.match(/.(\w+)$/)![1] || 'png'
         console.log(type)
         return this.wasmPipe!.render(buf, type, type)
       })

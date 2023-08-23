@@ -1,9 +1,6 @@
-use image::{DynamicImage};
+use image::DynamicImage;
 
-// 灰度化
-pub fn grayscale(image: DynamicImage) -> DynamicImage {
-  img.grayscale()
-}
+
 
 // 二值化
 pub fn binary(iamge: DynamicImage, boundary: i8) -> DynamicImage {
@@ -17,10 +14,5 @@ pub fn replace(
   to: &[u8],
   range: u8
 ) -> DynamicImage {
-  image
-}
-
-// 反相, 反色
-pub fn reverse(image: DynamicImage) -> DynamicImage {
   image
 }
