@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { featureGroups, Pipe, FeatureType, featureNameGroup } from '../core'
+import { featureGroups, Pipe, FeatureType, type FeatureField } from '../core'
 import { download } from '@coloration/kit'
 
 const imageResults = ref<string[]>([])
@@ -36,6 +36,14 @@ function removeFeature(index: number) {
   needRerender.value = true
 }
 
+function editFeature(index: number, content: FeatureField[]) {
+  const param = content.reduce((acc: any, curr: FeatureField) => {
+    acc[curr.key] = curr.value
+    return acc
+  }, {} as any)
+  pipe.value.editFeature(index, param)
+}
+
 async function handleRun() {
   const responses = await pipe.value.handle()
   imageResults.value = responses
@@ -66,7 +74,7 @@ function handleDownload () {
 
 <template>
   <div class="pt-2 text-sm text-white">
-      目前支持的格式为 .png .jpg .jpeg .gif。gif 目前只能导出第一帧。
+      目前支持的格式为 .png .jpg .jpeg .gif .ico。gif 目前只能导出第一帧。webp将在近期支持
   </div>
   <div class="main-view">
     <!-- -->
@@ -138,13 +146,14 @@ function handleDownload () {
 
         <template #default>
           <div class="flex flex-col gap-2">
-            <FeatureButton
+            <FeatureOptButton
               closable
               @close="removeFeature(i)"
-              size="lg"
+              :feature="item"
+              @change="(val: any) => editFeature(i, val)"
               v-for="(item, i) in pipe.features">
-              {{ featureNameGroup[item.type] }}
-            </FeatureButton>
+        
+            </FeatureOptButton>
           </div>
         </template>
 

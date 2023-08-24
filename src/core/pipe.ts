@@ -66,6 +66,10 @@ export class Pipe {
     this.check()
   }
 
+  editFeature(index: number, param: any) {
+    console.log('TODO: ', index, param)
+  }
+
   async handle() {
     return (await Promise.all(this.sources.map(readAsBuffer)))
       .map(arrBuf => new Uint8Array(arrBuf))

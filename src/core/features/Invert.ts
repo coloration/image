@@ -4,7 +4,7 @@ import { FeatureGroup, FeatureType } from './base'
 export class Invert extends Feature {
   type = FeatureType.Invert
   group = FeatureGroup.Color
-  uni = true
+  uni = FeatureType.Invert
 
   check() {
     return true
