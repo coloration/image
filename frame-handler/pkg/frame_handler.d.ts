@@ -28,10 +28,9 @@ export class Pipe {
 /**
 * @param {Uint8Array} arr
 * @param {string} from_suffix
-* @param {string} to_suffix
 * @returns {string}
 */
-  render(arr: Uint8Array, from_suffix: string, to_suffix: string): string;
+  render(arr: Uint8Array, from_suffix: string): string;
 }
 
 export type InitInput = RequestInfo | URL | Response | BufferSource | WebAssembly.Module;
@@ -44,11 +43,12 @@ export interface InitOutput {
   readonly pipe_del_feature: (a: number, b: number) => void;
   readonly pipe_set_feature: (a: number, b: number, c: number) => void;
   readonly pipe_feature_len: (a: number) => number;
-  readonly pipe_render: (a: number, b: number, c: number, d: number, e: number, f: number, g: number, h: number) => void;
+  readonly pipe_render: (a: number, b: number, c: number, d: number, e: number, f: number) => void;
   readonly __wbindgen_malloc: (a: number, b: number) => number;
   readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
   readonly __wbindgen_add_to_stack_pointer: (a: number) => number;
   readonly __wbindgen_free: (a: number, b: number, c: number) => void;
+  readonly __wbindgen_exn_store: (a: number) => void;
 }
 
 export type SyncInitInput = BufferSource | WebAssembly.Module;

@@ -7,19 +7,16 @@ export class Binary extends Feature {
   group = FeatureGroup.Color
   uni = FeatureType.Binary
   
-  threshold: number = 128
   fields = [
     { 
       label: 'threshold', 
       key: 'threshold',
-      value: '2222',
-      type: FeatureFieldType.text
-    },
-    { 
-      label: 'threshold2', 
-      key: 'threshold2',
-      value: '',
-      type: FeatureFieldType.text
+      value: 128,
+      type: FeatureFieldType.range,
+      props: {
+        min: 0,
+        max: 255
+      }
     },
   ]
   check() {

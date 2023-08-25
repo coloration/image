@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { featureNameGroup, type Feature } from '@/core'
+import { featureNameGroup, type Feature, groupColor } from '@/core'
 import { FeatureFieldComponent } from '@/core/ui'
 const props = withDefaults(
   defineProps<{
@@ -16,20 +16,21 @@ const emits = defineEmits<{
 
 function handleModelValueChange(fIndex: number, v: any) {
   props.feature.fields[fIndex].value = v
-  console.log('emits')
   emits('change', props.feature.fields)
 }
 </script>
 
 <template>
-  <FeatureButton v-if="feature" size="lg">
+  <FeatureButton
+    :badge="groupColor[feature.group]"
+    v-if="feature"
+    size="lg" 
+    :title="featureNameGroup[feature.type]">
     <div>
-      {{ featureNameGroup[feature.type] }}
-
-
       <div v-for="(field, i) in feature.fields">
         <component
           :is="(FeatureFieldComponent as any)[field.type]"
+          v-bind="field.props || {}"
           :label="field.label"
           :modelValue="field.value"
           @update:modelValue="(v: any) => handleModelValueChange(i, v)"

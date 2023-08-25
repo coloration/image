@@ -1,3 +1,4 @@
+import type { PlainObject } from '@coloration/kit'
 import type { FeatureFieldType } from '../ui'
 import { FeatureGroup, FeatureType } from './base'
 
@@ -6,6 +7,7 @@ export interface FeatureField {
   key: string, 
   value: any, 
   type: FeatureFieldType
+  props?: PlainObject
 }
 
 export class Feature {

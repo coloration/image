@@ -1,10 +1,11 @@
-import { FeatureStrategy, type Feature, FeatureType } from './features'
+import { FeatureStrategy, type Feature, FeatureType, type FeatureField } from './features'
 import { toArray } from '@coloration/kit'
 import { readAsBase64, readAsBuffer } from './utils'
 import init, { Pipe as WasmPipe } from 'frame-handler'
 export class Pipe {
 
   features: Feature[] = []
+  localFeatures: Feature[] = []
   sources: File[] = []
   displaySources: string[] = []
   displayResults: string[] = []
@@ -55,19 +56,26 @@ export class Pipe {
   addFeature(featType: FeatureType) {
     const feat = FeatureStrategy.create(featType, this.features)
     if (!feat) return
-    this.wasmPipe?.add_feature(featType, { a: 12, b: 5 })
+    const param = feat.fields.reduce((acc: any, curr: FeatureField) => {
+      acc[curr.key] = curr.value
+      return acc
+    }, {} as any)
+    console.log(param)
+    this.wasmPipe?.add_feature(featType, param)
     this.features.push(feat)
     this.check()
   }
 
   delFeature(index: number) {
+    if (index >= this.features.length) return
     this.features.splice(index, 1)
     this.wasmPipe?.del_feature(index)
     this.check()
   }
-
+  
   editFeature(index: number, param: any) {
-    console.log('TODO: ', index, param)
+    if (index >= this.features.length) return
+    this.wasmPipe?.set_feature(index, param)
   }
 
   async handle() {
@@ -76,7 +84,7 @@ export class Pipe {
       .map((buf, i) => {
         const type = this.sources[i].name.match(/.(\w+)$/)![1] || 'png'
         console.log(type)
-        return this.wasmPipe!.render(buf, type, type)
+        return this.wasmPipe!.render(buf, type)
       })
   }
 

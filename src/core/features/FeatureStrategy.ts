@@ -1,5 +1,6 @@
 import { Binary } from './Binary'
 import { Feature } from './Feature'
+import { Format } from './Format'
 import { Grayscale } from './Grayscale'
 import { Invert } from './Invert'
 import { FeatureType } from './base'
@@ -17,12 +18,16 @@ export class FeatureStrategy {
       return new Grayscale()
     }
 
-    if (type === FeatureType.Invert) {
+    else if (type === FeatureType.Invert) {
       return new Invert()
     }
 
-    if (type === FeatureType.Binary) {
+    else if (type === FeatureType.Binary) {
       return new Binary()
+    }
+
+    else if (type === FeatureType.Format) {
+      return new Format()
     }
 
     return new Feature()

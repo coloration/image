@@ -1,11 +1,15 @@
-use image::DynamicImage;
+use image::{DynamicImage, ImageFormat};
 use wasm_bindgen::prelude::*;
-use super::feat::Feat;
+use super::{feat::Feat, HandleResult};
 
 pub struct Grayscale {}
 
 impl Feat for Grayscale {
-    fn handle (&self, img: DynamicImage, _param: &JsValue) -> DynamicImage {
-        img.grayscale()
+    fn handle (&self, image: DynamicImage, _param: &JsValue, format: ImageFormat) -> HandleResult {
+        
+        HandleResult {
+            image: image.grayscale(),
+            format
+        }
     }
 }

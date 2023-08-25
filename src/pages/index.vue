@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { featureGroups, Pipe, FeatureType, type FeatureField } from '../core'
+import { featureGroups, groupColor, Pipe, FeatureType, type FeatureField } from '../core'
 import { download } from '@coloration/kit'
 
 const imageResults = ref<string[]>([])
@@ -66,8 +66,10 @@ function handleDownload () {
   
   const blob = new Blob([u8arr], { type: mime })
   const objUrl = URL.createObjectURL(blob)
-    // const fileName = pipe.value.sources[i].name
-    download(pipe.value.sources[i].name, objUrl)
+    const fileName = pipe.value.sources[i].name
+      .replace(/.\w+$/, '')
+
+    download(fileName, objUrl)
   })
 }
 </script>
@@ -164,16 +166,19 @@ function handleDownload () {
           <OptButton disabled>Setting</OptButton>
         </template> -->
         <template #default>
-          <div
-            v-for="item in featureGroups"
-            :key="item.group"
-            class="flex flex-col gap-1">
-            <FeatureButton
-              class="cursor-pointer"
-              v-for="feat in item.features"
-              @click="addFeature(feat.value)">
-              {{ feat.name }}
-            </FeatureButton>
+          <div class="flex flex-col gap-3">
+            <div
+              v-for="item in featureGroups"
+              :key="item.group"
+              class="flex flex-col gap-1">
+              <FeatureButton
+                :badge="groupColor[item.group]"
+                :title="feat.name"
+                class="cursor-pointer"
+                v-for="feat in item.features"
+                @click="addFeature(feat.value)">
+              </FeatureButton>
+            </div>
           </div>
         </template>
       </Board>

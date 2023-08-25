@@ -5,6 +5,7 @@ const props = withDefaults(
     badge?: 'purple' | 'blue' | 'red' | 'green' | 'orange'
     disabled?: boolean
     closable?: boolean
+    title: string
   }>(),
   {
     size: 'md',
@@ -21,6 +22,7 @@ const emits = defineEmits<{
 function close() {
   emits('close')
 }
+
 </script>
 
 <template>
@@ -39,7 +41,10 @@ function close() {
       <div class="fb-badge" :class="badge">
 
       </div>
-      <slot></slot>
+      <div class="fb-content">
+        <div class="select-none">{{ title }}</div>
+        <slot></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -60,7 +65,11 @@ function close() {
 
 .fb-contain {
 
-  @apply flex gap-2 items-center;
+  @apply flex gap-2 w-full;
+}
+
+.fb-content {
+  @apply flex-1;
 }
 
 .fb-close {

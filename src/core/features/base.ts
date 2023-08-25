@@ -2,7 +2,8 @@ export enum FeatureType {
   None = '',
   Invert = 'invert',
   Grayscale = 'grayscale',
-  Binary = 'binary'
+  Binary = 'binary',
+  Format = 'format',
 }
 
 export enum FeatureGroup {
