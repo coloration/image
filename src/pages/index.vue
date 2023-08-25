@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
-import { featureGroups, Pipe, FeatureType, featureNameGroup } from '../core'
+import { featureGroups, groupColor, Pipe, FeatureType, type FeatureField } from '../core'
 import { download } from '@coloration/kit'
 
 const imageResults = ref<string[]>([])
@@ -36,6 +36,14 @@ function removeFeature(index: number) {
   needRerender.value = true
 }
 
+function editFeature(index: number, content: FeatureField[]) {
+  const param = content.reduce((acc: any, curr: FeatureField) => {
+    acc[curr.key] = curr.value
+    return acc
+  }, {} as any)
+  pipe.value.editFeature(index, param)
+}
+
 async function handleRun() {
   const responses = await pipe.value.handle()
   imageResults.value = responses
@@ -58,15 +66,17 @@ function handleDownload () {
   
   const blob = new Blob([u8arr], { type: mime })
   const objUrl = URL.createObjectURL(blob)
-    // const fileName = pipe.value.sources[i].name
-    download(pipe.value.sources[i].name, objUrl)
+    const fileName = pipe.value.sources[i].name
+      .replace(/.\w+$/, '')
+
+    download(fileName, objUrl)
   })
 }
 </script>
 
 <template>
   <div class="pt-2 text-sm text-white">
-      目前支持的格式为 .png .jpg .jpeg .gif。gif 目前只能导出第一帧。
+      目前支持的格式为 .png .jpg .jpeg .gif .ico。gif 目前只能导出第一帧。webp将在近期支持
   </div>
   <div class="main-view">
     <!-- -->
@@ -138,13 +148,14 @@ function handleDownload () {
 
         <template #default>
           <div class="flex flex-col gap-2">
-            <FeatureButton
+            <FeatureOptButton
               closable
               @close="removeFeature(i)"
-              size="lg"
+              :feature="item"
+              @change="(val: any) => editFeature(i, val)"
               v-for="(item, i) in pipe.features">
-              {{ featureNameGroup[item.type] }}
-            </FeatureButton>
+        
+            </FeatureOptButton>
           </div>
         </template>
 
@@ -155,16 +166,19 @@ function handleDownload () {
           <OptButton disabled>Setting</OptButton>
         </template> -->
         <template #default>
-          <div
-            v-for="item in featureGroups"
-            :key="item.group"
-            class="flex flex-col gap-1">
-            <FeatureButton
-              class="cursor-pointer"
-              v-for="feat in item.features"
-              @click="addFeature(feat.value)">
-              {{ feat.name }}
-            </FeatureButton>
+          <div class="flex flex-col gap-3">
+            <div
+              v-for="item in featureGroups"
+              :key="item.group"
+              class="flex flex-col gap-1">
+              <FeatureButton
+                :badge="groupColor[item.group]"
+                :title="feat.name"
+                class="cursor-pointer"
+                v-for="feat in item.features"
+                @click="addFeature(feat.value)">
+              </FeatureButton>
+            </div>
           </div>
         </template>
       </Board>

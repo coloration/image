@@ -52,21 +52,25 @@ impl Pipe {
         self.feats.len()
     }
 
-    pub fn render(&self, arr: &[u8], from_suffix: &str, to_suffix:&str) -> String {
+    pub fn render(&self, arr: &[u8], from_suffix: &str) -> String {
+
+        let mut origin_format = ImageFormat::from_extension(from_suffix).expect("no matched extensions");
+
         let mut dyn_image = buffer_to_image(
             arr, 
-            ImageFormat::from_extension(from_suffix).expect("no matched extensions")
+            origin_format
         );
 
         for (i, handler) in self.feats.iter().enumerate() {
             let param = self.params.get(i).expect("params is error");
-            dyn_image = handler.handle(dyn_image, param);
+            let result = handler.handle(dyn_image, param, origin_format);
+            dyn_image = result.image;
+            origin_format = result.format;
         };
 
+        // HandleResult
 
-        image_to_base64(
-            dyn_image,
-            ImageFormat::from_extension(to_suffix).expect("no matched extensions")
-        )
+
+        image_to_base64(dyn_image, origin_format)
     }
 }
