@@ -1,7 +1,7 @@
 use base64::{engine::general_purpose, Engine as _};
 use std::io::{Cursor, Read, Seek, SeekFrom};
 use wasm_bindgen::prelude::*;
-use image::{DynamicImage, ImageFormat};
+use image::{DynamicImage, ImageFormat, Rgba};
 
 #[wasm_bindgen]
 extern "C" {
@@ -41,4 +41,53 @@ pub fn image_to_base64(img: DynamicImage, format: ImageFormat) -> String {
   let stt = general_purpose::STANDARD.encode(&mut out);
 
   format!("data:{};base64,{}", format.to_mime_type(), stt)
+}
+
+
+const ALL_CHARS: &'static str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
+
+/// 进阶版 10 进制转 11 - 64 进制
+pub fn base_10_to_n(num: u64, radix: u32) -> String {
+    if num == 0 {
+        return String::from("0");
+    }
+
+    let base = base_10_to_n(num / (radix as u64), radix);
+    let start = base.strip_prefix("0").unwrap_or(base.as_str());
+    let end = match ALL_CHARS.chars().nth((num % (radix as u64)) as usize) {
+        Some(data) => String::from(data),
+        _ => String::from(""),
+    };
+    format!("{}{}", start, end)
+}
+
+/// 11 - 64 进制解析为 10 进制
+///
+/// ```
+/// let id = "1gbyra5idyk8r";
+/// let raw_id = 6888076346770202619;
+/// assert_eq!(base_n_to_10(id, 36), 6888076346770202619);
+/// ```
+pub fn base_n_to_10(num_str: &str, radix: u32) -> u32 {
+    let mut result: u32 = 0;
+    for i in 0..num_str.len() {
+        result *= radix as u32;
+        let target_char = num_str.chars().nth(i).unwrap_or('0');
+        let data = ALL_CHARS.chars().position(|i| i == target_char).unwrap_or(0);
+        result += data as u32;
+    }
+    result
+}
+
+pub fn hex_to_rgb(hex_str: &str) -> Rgba<u8> {
+  let hex_r = &hex_str[1..3];
+  let hex_g = &hex_str[3..5];
+  let hex_b = &hex_str[5..7];
+  
+  Rgba ([
+    base_n_to_10(hex_r, 16) as u8,
+    base_n_to_10(hex_g, 16) as u8,
+    base_n_to_10(hex_b, 16) as u8,
+    255
+  ])
 }

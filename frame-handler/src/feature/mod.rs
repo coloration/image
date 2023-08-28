@@ -1,10 +1,8 @@
 pub mod feat;
 pub mod feat_strategy;
-pub mod grayscale;
-pub mod invert;
+pub mod color;
 pub mod format;
-pub mod binary;
-
+pub mod crop;
 
 pub use feat::*;
 pub use feat_strategy::*;

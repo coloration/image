@@ -4,6 +4,8 @@ export const featureNameGroup: { [key: string]: string } = {
   [FeatureType.Grayscale]: 'Grayscale',
   [FeatureType.Invert]: 'Invert',
   [FeatureType.Binary]: 'Binary',
+  [FeatureType.ColorReplace]: 'Replace color',
+
   [FeatureType.Format]: 'Format',
 }
 
@@ -23,6 +25,7 @@ export const featureGroups: {
       { name: featureNameGroup[FeatureType.Grayscale], value: FeatureType.Grayscale },
       { name: featureNameGroup[FeatureType.Invert], value: FeatureType.Invert },
       { name: featureNameGroup[FeatureType.Binary], value: FeatureType.Binary },
+      { name: featureNameGroup[FeatureType.ColorReplace], value: FeatureType.ColorReplace },
     ]
   }, 
   {

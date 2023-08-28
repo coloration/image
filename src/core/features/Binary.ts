@@ -18,6 +18,12 @@ export class Binary extends Feature {
         max: 255
       }
     },
+    { 
+      label: 'threshold2', 
+      key: 'threshold2',
+      value: '#ffffff',
+      type: FeatureFieldType.color,
+    },
   ]
   check() {
     return true

@@ -4,6 +4,7 @@ export enum FeatureType {
   Grayscale = 'grayscale',
   Binary = 'binary',
   Format = 'format',
+  ColorReplace = 'color-replace'
 }
 
 export enum FeatureGroup {

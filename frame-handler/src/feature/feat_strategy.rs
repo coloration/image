@@ -1,9 +1,6 @@
 use super::feat::Feat;
-use super::grayscale::Grayscale;
-use super::invert::Invert;
 use super::format::Format;
-use super::binary::Binary;
-
+use super::color::{ColorReplace, Grayscale, Invert, Binary};
 pub struct FeatStrategy {}
 
 
@@ -15,6 +12,7 @@ impl FeatStrategy {
             "format" => Box::new(Format {}),
             "invert" => Box::new(Invert {}),
             "binary" => Box::new(Binary {}),
+            "color-replace" => Box::new(ColorReplace {}),
             _ => {
                 panic!("feature type can not matched")
             }
