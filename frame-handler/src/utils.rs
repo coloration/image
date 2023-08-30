@@ -89,7 +89,6 @@ pub fn param_field_boolean(param: &JsValue, field: &str) -> bool {
 
 const ALL_CHARS: &'static str = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ-_";
 
-/// 进阶版 10 进制转 11 - 64 进制
 pub fn base_10_to_n(num: u64, radix: u32) -> String {
     if num == 0 {
         return String::from("0");
@@ -104,13 +103,6 @@ pub fn base_10_to_n(num: u64, radix: u32) -> String {
     format!("{}{}", start, end)
 }
 
-/// 11 - 64 进制解析为 10 进制
-///
-/// ```
-/// let id = "1gbyra5idyk8r";
-/// let raw_id = 6888076346770202619;
-/// assert_eq!(base_n_to_10(id, 36), 6888076346770202619);
-/// ```
 pub fn base_n_to_10(num_str: &str, radix: u32) -> u32 {
     let mut result: u32 = 0;
     for i in 0..num_str.len() {
