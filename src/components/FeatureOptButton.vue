@@ -22,11 +22,12 @@ function handleModelValueChange(fIndex: number, v: any) {
 
 <template>
   <FeatureButton
+    class="feature-opt-button"
     :badge="groupColor[feature.group]"
     v-if="feature"
     size="lg" 
     :title="featureNameGroup[feature.type]">
-    <div>
+    <div class="flex flex-col gap-2 pt-2">
       <div v-for="(field, i) in feature.fields">
         <component
           :is="(FeatureFieldComponent as any)[field.type]"

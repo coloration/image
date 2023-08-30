@@ -15,14 +15,9 @@ export class Binary extends Feature {
       type: FeatureFieldType.range,
       props: {
         min: 0,
-        max: 255
+        max: 255,
+        fix: 0
       }
-    },
-    { 
-      label: 'threshold2', 
-      key: 'threshold2',
-      value: '#ffffff',
-      type: FeatureFieldType.color,
     },
   ]
   check() {

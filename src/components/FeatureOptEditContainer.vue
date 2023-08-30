@@ -10,6 +10,6 @@
 
 <style lang="postcss">
 .feat-opt-edit {
-  @apply pt-4 flex-1;
+  @apply flex-1 flex;
 }
 </style>

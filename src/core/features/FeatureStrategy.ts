@@ -4,6 +4,10 @@ import { Format } from './Format'
 import { Grayscale } from './Grayscale'
 import { Invert } from './Invert'
 import { ColorReplace } from './ColorReplace'
+import { Resize } from './Resize'
+import { Crop } from './Crop'
+
+
 import { FeatureType } from './base'
 
 export class FeatureStrategy {
@@ -33,6 +37,12 @@ export class FeatureStrategy {
 
     else if (type === FeatureType.ColorReplace) {
       return new ColorReplace()
+    }
+    else if (type === FeatureType.Resize) {
+      return new Resize()
+    }
+    else if (type === FeatureType.Crop) {
+      return new Crop()
     }
 
     return new Feature()

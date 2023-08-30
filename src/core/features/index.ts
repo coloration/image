@@ -7,12 +7,18 @@ export const featureNameGroup: { [key: string]: string } = {
   [FeatureType.ColorReplace]: 'Replace color',
 
   [FeatureType.Format]: 'Format',
+
+  [FeatureType.Crop]: 'Crop',
+  [FeatureType.Resize]: 'Resize',
+
+  [FeatureType.None]: 'None',
 }
 
 
 export const groupColor : { [key: string]: string } = {
   [FeatureGroup.Color]: 'blue',
   [FeatureGroup.Format]: 'red',
+  [FeatureGroup.Shape]: 'green',
 }
 
 export const featureGroups: { 
@@ -33,7 +39,14 @@ export const featureGroups: {
     features: [
       { name: featureNameGroup[FeatureType.Format], value: FeatureType.Format },
     ]
-  }
+  },
+  {
+    group: FeatureGroup.Shape,
+    features: [
+      { name: featureNameGroup[FeatureType.Resize], value: FeatureType.Resize },
+      { name: featureNameGroup[FeatureType.Crop], value: FeatureType.Crop },
+    ]
+  },
 ]
 
 export * from './base'

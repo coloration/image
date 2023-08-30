@@ -2,6 +2,8 @@ use base64::{engine::general_purpose, Engine as _};
 use std::io::{Cursor, Read, Seek, SeekFrom};
 use wasm_bindgen::prelude::*;
 use image::{DynamicImage, ImageFormat, Rgba};
+use js_sys::Reflect;
+
 
 #[wasm_bindgen]
 extern "C" {
@@ -41,6 +43,47 @@ pub fn image_to_base64(img: DynamicImage, format: ImageFormat) -> String {
   let stt = general_purpose::STANDARD.encode(&mut out);
 
   format!("data:{};base64,{}", format.to_mime_type(), stt)
+}
+
+
+pub fn get_param_field(param: &JsValue, field: &str) -> JsValue {
+  match Reflect::get(param, &JsValue::from(field)) {
+    Ok(v) => v,
+    Err(err) => {
+      log(format!("error param [{}] field.", field));
+      panic!("{:?}", err);
+    }
+  }
+}
+
+pub fn param_field_number(param: &JsValue, field: &str) -> f64 {
+  match get_param_field(param, field).as_f64() {
+    Some(v) => v,
+    None => {
+      log(format!("can not convert [{}] field to number", field));
+      panic!()
+    }
+  }
+}
+
+pub fn param_field_string(param: &JsValue, field: &str) -> String {
+  match get_param_field(param, field).as_string() {
+    Some(v) => v,
+    None => {
+      log(format!("can not convert [{}] field to string", field));
+      panic!()
+    }
+  }
+}
+
+pub fn param_field_boolean(param: &JsValue, field: &str) -> bool {
+  match get_param_field(param, field).as_bool() {
+    Some(v) => v,
+    None => {
+      log(format!("can not convert [{}] field to boolean", field));
+      panic!()
+    }
+  }
 }
 
 

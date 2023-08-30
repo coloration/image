@@ -4,13 +4,14 @@ export enum FeatureType {
   Grayscale = 'grayscale',
   Binary = 'binary',
   Format = 'format',
-  ColorReplace = 'color-replace'
+  ColorReplace = 'color-replace',
+  Resize = 'resize',
+  Crop = 'crop',
 }
 
 export enum FeatureGroup {
   None = '',
   Color = 'c',
   Format = 'f',
-  Size = 's',
-
+  Shape = 's',
 }

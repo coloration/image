@@ -7,10 +7,12 @@ const props = withDefaults(
     modelValue?: number
     max?: number
     min?: number
+    fix?: number
   }>(),
   {
     label: '',
-    modelValue: 0
+    modelValue: 0,
+    
   }
 )
 
@@ -21,8 +23,11 @@ const emits = defineEmits<{
 function handleModelValueChange(val: string) {
   let v = Number(val)
   if (isNaN(v)) v = 0
-  else if (isNumber(props.max) && v > props.max) v = props.max
-  else if (isNumber(props.min) && v < props.min) v = props.min
+  if (isNumber(props.max) && v > props.max) v = props.max
+  if (isNumber(props.min) && v < props.min) v = props.min
+  if (isNumber(props.fix)) v = Number(v.toFixed(props.fix))
+
+
   emits('update:modelValue', v)
 }
 </script>
@@ -34,6 +39,7 @@ function handleModelValueChange(val: string) {
       <span>{{ label }}</span>:
       <input 
         type="text"
+        class="w-10 text-center rounded border-1 border-blue-700 ml-2"
         :value="modelValue"
         @input="(e: any) => handleModelValueChange(e.target.value)">
     </label>

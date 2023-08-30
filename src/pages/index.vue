@@ -154,7 +154,8 @@ function handleDownload () {
               :feature="item"
               @change="(val: any) => editFeature(i, val)"
               v-for="(item, i) in pipe.features">
-        
+            
+              
             </FeatureOptButton>
           </div>
         </template>
@@ -177,6 +178,7 @@ function handleDownload () {
                 class="cursor-pointer"
                 v-for="feat in item.features"
                 @click="addFeature(feat.value)">
+
               </FeatureButton>
             </div>
           </div>

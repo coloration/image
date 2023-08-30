@@ -10,7 +10,7 @@ const props = withDefaults(
   }>(),
   {
     label: '',
-    modelValue: 0
+    modelValue: 0,
   }
 )
 
@@ -19,10 +19,12 @@ const emits = defineEmits<{
 }>()
 
 function handleModelValueChange(val: string) {
-  let v = Number(val)
+  let v = Number(val.replace(/\D+/g, ''))
   if (isNaN(v)) v = 0
   else if (isNumber(props.max) && v > props.max) v = props.max
   else if (isNumber(props.min) && v < props.min) v = props.min
+
+  
   emits('update:modelValue', v)
 }
 </script>
