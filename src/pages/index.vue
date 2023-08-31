@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import { featureGroups, groupColor, Pipe, FeatureType, type FeatureField } from '../core'
-import { download } from '@coloration/kit'
+import { downloadWithDataurl } from '@coloration/kit'
 
 const imageResults = ref<string[]>([])
 const needRerender = ref<boolean>(false)
@@ -51,25 +51,9 @@ async function handleRun() {
 
 function handleDownload () {
   imageResults.value.map((res, i) => {
-    
-    // TODO replace when kit package fix
-    const arr = res.split(',') as any
-    const mime = arr[0].match(/:(.*?);/)[1]
+    const fileName = pipe.value.sources[i].name.replace(/.\w+$/, '')
 
-    const bstr = atob(arr[1])
-    let n = bstr.length
-    const u8arr = new Uint8Array(n)
-    
-    while(n--){
-      u8arr[n] = bstr.charCodeAt(n)
-    }
-  
-  const blob = new Blob([u8arr], { type: mime })
-  const objUrl = URL.createObjectURL(blob)
-    const fileName = pipe.value.sources[i].name
-      .replace(/.\w+$/, '')
-
-    download(fileName, objUrl)
+    downloadWithDataurl(fileName, res)
   })
 }
 </script>
